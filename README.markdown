@@ -48,15 +48,16 @@ All you need to do is call the method `has_markup` from your model.
 	end
 
 The example above expects the table `posts` to have two columns: `content` 
-and `formatted_content`. Is filtering the allowed tags and attributes. If you
-don't want to limit the allowed HTML, just go with something like this
+and `formatted_content`. This example is also filtering the allowed tags and
+attributes. If you don't want to limit what will be saved, just go with 
+something like this
 
 	class Post < ActiveRecord::Base
 	  has_markup :content,
 	    :format       => :textile,
 	    :tidy         => true
 	end
-	
+
 You can instantiate a markup object any time:
 
 	markup = Markup.new(:markdown, 'some text')
@@ -84,4 +85,31 @@ When `Sanitize.html` is called, Tidy is executed twice:
 before the sanitization process and after the text has been 
 filtered.
 
-Copyright (c) 2008 Nando Vieira, released under the MIT license
+Maintainer
+----------
+
+* Nando Vieira ([http://simplesideias.com.br](http://simplesideias.com.br))
+
+License
+-------
+
+(The MIT License)
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
