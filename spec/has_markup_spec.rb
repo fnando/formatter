@@ -114,6 +114,19 @@ describe "has_markup" do
     text.should have_tag('p', 'some text')
   end
   
+  it "should parse content when attribute has changed" do
+    post = create_post
+    Markdown.should_not_receive(:new)
+    post.save
+  end
+  
+  it "should parse content when formatted attribute is blank" do
+    post = create_post
+    post.formatted_content = ''
+    post.save
+    post.formatted_content.should_not be_blank
+  end
+  
   private
     def create_post(options={})
       Post.create({
