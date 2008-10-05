@@ -1,7 +1,7 @@
 has_markup
 ==========
 
-has_markup is a ActiveRecord plugin that integrates
+has_markup is an ActiveRecord plugin that integrates
 [Tidy](http://sourceforge.net/projects/tidy),
 [Markdown](http://github.com/rtomayko/rdiscount),
 [Textile](http://redcloth.org/) and `sanitize` helper method into a single
@@ -14,7 +14,7 @@ Install the plugin with
 	
 	script/plugin install git://github.com/fnando/has_markup.git
 
-Install the markup language you want to use. If you want to use Markdown, 
+Install the markup language you want to use. For Markdown, 
 install it using 
 
 	sudo gem install rdiscount
