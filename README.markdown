@@ -58,6 +58,15 @@ something like this
 	    :tidy         => true
 	end
 
+To save normalized HTML, if you don't want to use Markdown or Textile, set
+`:format` to `:html`
+
+	class Post < ActiveRecord::Base
+	  has_markup :content,
+	    :format       => :html,
+	    :tidy         => true
+	end
+
 You can instantiate a markup object any time:
 
 	markup = Markup.new(:markdown, 'some text')
@@ -67,6 +76,14 @@ You can instantiate a markup object any time:
 To sanitize a given HTML, use the `html` method:
 
 	Sanitize.html('<script>alert(document.cookie)</script>')
+	
+	Sanitize.html('<script>alert(document.cookie)</script>',
+		:tags => %w(p a em strong img ul li ol)
+	)
+	
+	Sanitize.html('<script>alert(document.cookie)</script>',
+		:attributes => %w(href title alt)
+	)
 
 If you want to normalize HTML, you can use
 

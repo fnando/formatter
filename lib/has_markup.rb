@@ -31,7 +31,7 @@ module SimplesIdeias
         
         def sanitize_markup(attr_name, options)
           text = send(attr_name).to_s
-          text = Markup.new(options[:format], text).to_html
+          text = Markup.new(options[:format], text).to_html unless options[:format] == :html
           write_attribute("formatted_#{attr_name}", Sanitize.html(text, options))
         end
     end

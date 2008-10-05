@@ -48,7 +48,8 @@ class Post < ActiveRecord::Base
     :attributes   => %w(href)
     
   has_markup :excerpt,
-    :format       => :markdown
+    :format       => :html,
+    :tidy         => true
 end
 
 class Comment < ActiveRecord::Base
@@ -90,7 +91,6 @@ describe "has_markup" do
   it "should format content using textile" do
     post = create_comment(:content => TEXTILE_CONTENT)
     text = post.formatted_content
-    puts text
 
     text.should have_tag('strong', 'formatted')
     text.should have_tag('em', 'text')
@@ -102,6 +102,16 @@ describe "has_markup" do
     text.should_not have_tag('script')
     text.should_not have_tag('a[title=Example]')
     text.should_not have_tag('img')
+  end
+  
+  it "should keep content when format is :html" do
+    post = create_post(:excerpt => '<p>some text</p>')
+    
+    Markdown.stub!(:new).and_return(mock('content', :null_object => true))
+    Markdown.should_not_receive(:new).with(:html, post.excerpt)
+    
+    text = post.formatted_excerpt
+    text.should have_tag('p', 'some text')
   end
   
   private
