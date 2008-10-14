@@ -50,7 +50,7 @@ class Sanitize
     
     Tidy.path = lib_path
     
-    Tidy.open(options) do |tidy|
+    Tidy.open(TIDY_OPTIONS.merge(options)) do |tidy|
       tidy.clean(text)
     end.strip
   end
