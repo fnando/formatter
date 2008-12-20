@@ -85,6 +85,10 @@ To sanitize a given HTML, use the `html` method:
 		:attributes => %w(href title alt)
 	)
 
+To remove all tags, use the `strip_tags` method:
+
+	Sanitize.strip_tags('<strong>PWNED</strong>')
+
 If you want to normalize HTML, you can use
 
 	Sanitize.tidy('some text', options)

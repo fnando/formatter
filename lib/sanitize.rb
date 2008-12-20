@@ -21,6 +21,10 @@ class Sanitize
   extend ActionView::Helpers::SanitizeHelper::ClassMethods
   include ActionView::Helpers::SanitizeHelper
   
+  def self.strip_tags(text)
+    instance.strip_tags(text)
+  end
+  
   def self.html(text, options={})
     text = tidy(text, TIDY_OPTIONS) if options[:tidy]
     

@@ -127,6 +127,11 @@ describe "has_markup" do
     post.formatted_content.should_not be_blank
   end
   
+  it "should strip tags" do
+    Sanitize.strip_tags('<strong>test</strong>').should == 'test'
+    Sanitize.strip_tags('<b>test</strong>').should == 'test'
+  end
+  
   private
     def create_post(options={})
       Post.create({
