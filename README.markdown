@@ -1,7 +1,7 @@
-has_markup
+has\_markup
 ==========
 
-has_markup is an ActiveRecord plugin that integrates
+has\_markup is an ActiveRecord plugin that integrates
 [Tidy](http://sourceforge.net/projects/tidy),
 [Markdown](http://github.com/rtomayko/rdiscount),
 [Textile](http://redcloth.org/) and `sanitize` helper method into a single
