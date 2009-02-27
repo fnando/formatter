@@ -15,7 +15,7 @@ module SimplesIdeias
         include SimplesIdeias::HasMarkup::InstanceMethods
         
         self.has_markup_options ||= {}
-        self.has_markup_options[attribute] = options
+        self.has_markup_options[attribute] = {:sanitize => true}.merge(options)
         
         before_save :sanitize_markup_attributes
       end
@@ -33,7 +33,7 @@ module SimplesIdeias
           if send("#{attr_name}_changed?") || send("formatted_#{attr_name}").blank?
             text = send(attr_name).to_s
             text = Markup.new(options[:format], text).to_html unless options[:format] == :html
-            text = Sanitize.html(text, options) unless options[:sanitize] == false
+            text = Sanitize.html(text, options) if options[:sanitize]
             write_attribute("formatted_#{attr_name}", text)
           end
         end
