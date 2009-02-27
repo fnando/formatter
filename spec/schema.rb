@@ -8,4 +8,8 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table :comments do |t|
     t.text    :content, :formatted_content
   end
+  
+  create_table :tasks do |t|
+    t.text    :content, :formatted_content
+  end
 end

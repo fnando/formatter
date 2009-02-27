@@ -67,6 +67,16 @@ To save normalized HTML, if you don't want to use Markdown or Textile, set
 	    :tidy         => true
 	end
 
+If you don't want the content to be sanitized at all, you can set `:sanitize` 
+to `false`. This is specially useful if you're the editor or something like 
+that.
+
+	class Post < ActiveRecord::Base
+	  has_markup :content,
+	    :format       => :html,
+	    :sanitize     => false
+	end
+
 You can instantiate a markup object any time:
 
 	markup = Markup.new(:markdown, 'some text')
